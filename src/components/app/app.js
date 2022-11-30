@@ -11,7 +11,9 @@ function App() {
 	const data = [
 		{name: 'Ivan L.', salary: 800, increase: false, id: 1},
 		{name: 'Denis P.', salary: 1200, increase: false, id: 2},
-		{name: 'Alexey Z.', salary: 4000, increase: true, id: 3}
+		{name: 'Alexey Z.', salary: 4000, increase: true, id: 3},
+		{name: 'Farberov K.', salary: 3000, increase: false, id: 4},
+		{name: 'Stafilov M.', salary: 3500, increase: true, id: 5}
 	]
 
   	return (
