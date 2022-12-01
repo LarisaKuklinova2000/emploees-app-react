@@ -28,6 +28,7 @@ function App() {
         
         	<EmployeesList data={data} />
         	<EmployeesAddForm/>
+
     	</div>
   	);
 }
