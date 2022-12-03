@@ -13,11 +13,11 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{name: 'Ivan L.', salary: 800, increase: false, id: 1},
-				{name: 'Denis P.', salary: 1200, increase: false, id: 2},
-				{name: 'Alexey Z.', salary: 4000, increase: true, id: 3},
-				{name: 'Farberov K.', salary: 3000, increase: false, id: 4},
-				{name: 'Stafilov M.', salary: 3500, increase: true, id: 5}
+				{name: 'Ivan L.', salary: 800, increase: false, rise: true, id: 1},
+				{name: 'Denis P.', salary: 1200, increase: false, rise: false, id: 2},
+				{name: 'Alexey Z.', salary: 4000, increase: true, rise: false, id: 3},
+				{name: 'Farberov K.', salary: 3000, increase: false, rise: false, id: 4},
+				{name: 'Stafilov M.', salary: 3500, increase: true, rise: false, id: 5}
 			]
 		}
 	}
@@ -30,11 +30,41 @@ class App extends Component {
 		})
 	}
 
+	addItem = (name, salary) => {
+		let maxId = 5;
+		const newItem = {
+			name: name,
+			salary: salary,
+			increase: false,
+			rise: false,
+			id: ++maxId
+		}
+		this.setState(({data}) => {
+			const newArr = [...data, newItem];
+			return {
+				data: newArr
+			}
+		});
+	}
+	
+    onToggleProp = (id, prop) => {
+		this.setState(({data}) => ({
+			data: data.map(item => {
+				if (item.id === id) {
+					return {...item, [prop]: !item[prop]}
+				}
+				return item;
+			})
+		}))
+    }
+
 	render () {
 		return (
 			<div className="app">
 	
-				<AppInfo />
+				<AppInfo 
+					empCount={this.state.data.length}
+					incrCount={this.state.data.filter(item => item.increase).length}/>
 	
 				<div className="search-panel">
 					<SearchPanel/>
@@ -43,8 +73,10 @@ class App extends Component {
 			
 				<EmployeesList 
 					data={this.state.data}
-					onDelete={this.deleteItem} />
-				<EmployeesAddForm/>
+					onDelete={this.deleteItem}
+					onToggleProp={this.onToggleProp} />
+				<EmployeesAddForm
+					onAdd={this.addItem} />
 	
 			</div>
 		);
