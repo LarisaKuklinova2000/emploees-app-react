@@ -1,4 +1,12 @@
 import "./app-filter.css";
+import styled from "styled-components";
+
+const EmpItem = styled.div`
+	padding: 20px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, .2)
+`;
 
 const AppFilter = (props) => {
 
@@ -22,9 +30,9 @@ const AppFilter = (props) => {
     })
 
     return (
-        <div className="btn-group">
+        <EmpItem className="btn-group">
             {buttons}
-        </div>
+        </EmpItem>
     )
 }
 
